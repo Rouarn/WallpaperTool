@@ -37,6 +37,7 @@
   "section.preview": "预览",
   "section.source": "下载源",
   "section.autoUpdate": "自动更新",
+  "section.behavior": "下载与保存",
 
   "field.url": "图片地址",
   "field.destDir": "保存到",

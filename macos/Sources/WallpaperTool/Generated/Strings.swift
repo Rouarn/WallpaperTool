@@ -122,6 +122,7 @@ enum Strings {
         return "更新于 \(time)"
     }
     static let sectionAutoUpdate = "自动更新"
+    static let sectionBehavior = "下载与保存"
     static let sectionPreview = "预览"
     static let sectionSource = "下载源"
     static func statusAppliedFromPreview(_ name: String) -> String {

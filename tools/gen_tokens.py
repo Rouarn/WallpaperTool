@@ -24,8 +24,8 @@ TOKENS_PATH = ROOT / "design" / "tokens.json"
 COPY_PATH = ROOT / "design" / "copy.zh-CN.json"
 
 GENERATED = {
-    "cs_theme": ROOT / "windows" / "src" / "Theme.Generated.cs",
-    "cs_strings": ROOT / "windows" / "src" / "Strings.Generated.cs",
+    "cs_theme": ROOT / "windows" / "src" / "Generated" / "Theme.Generated.cs",
+    "cs_strings": ROOT / "windows" / "src" / "Generated" / "Strings.Generated.cs",
     "swift_theme": ROOT / "macos" / "Sources" / "WallpaperTool" / "Generated" / "Theme.swift",
     "swift_strings": ROOT / "macos" / "Sources" / "WallpaperTool" / "Generated" / "Strings.swift",
 }

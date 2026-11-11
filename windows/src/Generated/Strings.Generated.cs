@@ -106,6 +106,7 @@ namespace WallpaperTool
         // 占位符: time
         public const string MetaUpdatedAt = "更新于 {0}";
         public const string SectionAutoUpdate = "自动更新";
+        public const string SectionBehavior = "下载与保存";
         public const string SectionPreview = "预览";
         public const string SectionSource = "下载源";
         // 占位符: name

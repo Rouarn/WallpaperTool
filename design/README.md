@@ -15,8 +15,8 @@
 
 | 文件 | 平台 |
 |---|---|
-| `windows/src/Theme.Generated.cs` | Windows（WPF） |
-| `windows/src/Strings.Generated.cs` | Windows（WPF） |
+| `windows/src/Generated/Theme.Generated.cs` | Windows（WinForms） |
+| `windows/src/Generated/Strings.Generated.cs` | Windows（WinForms） |
 | `macos/Sources/WallpaperTool/Generated/Theme.swift` | macOS（SwiftUI） |
 | `macos/Sources/WallpaperTool/Generated/Strings.swift` | macOS（SwiftUI） |
 
