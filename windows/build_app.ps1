@@ -17,6 +17,8 @@ if (-not (Test-Path $binDir)) {
 
 # Compile command
 $srcFile = Join-Path $PSScriptRoot "src\WallpaperApp.cs"
+$themeFile = Join-Path $PSScriptRoot "src\Theme.Generated.cs"
+$stringsFile = Join-Path $PSScriptRoot "src\Strings.Generated.cs"
 $outFile = Join-Path $binDir "WallpaperTool.exe"
 $iconFile = Join-Path $PSScriptRoot "src\app.ico"
 $manifestFile = Join-Path $PSScriptRoot "src\app.manifest"
@@ -26,7 +28,9 @@ $args = @(
     "/out:$outFile",
     "/win32icon:$iconFile",
     "/win32manifest:$manifestFile",
-    $srcFile
+    $srcFile,
+    $themeFile,
+    $stringsFile
 )
 
 # Run csc.exe
