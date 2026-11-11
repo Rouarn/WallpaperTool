@@ -17,13 +17,16 @@ namespace WallpaperTool
         public const string ActionOpenFolder = "打开文件夹";
         public const string ActionOpenLog = "查看日志";
         public const string ActionOpenLogFile = "打开日志文件";
-        public const string ActionReapply = "重新应用";
+        public const string ActionOpenLoginItems = "打开登录项设置";
+        public const string ActionOpenMainWindow = "打开主窗口";
+        public const string ActionQuit = "退出";
+        public const string ActionReapply = "设为桌面壁纸";
         public const string ActionResetUrl = "恢复默认";
         public const string ActionRetry = "重试";
         public const string ActionTestNow = "立即测试";
         public const string AppName = "壁纸工具";
-        public const string AppTagline = "登录时自动更新桌面壁纸";
-        public const string EmptyPreviewBody = "添加图片地址后下载，完成后会自动设为桌面壁纸。";
+        public const string AppTagline = "按需下载壁纸，是否设为桌面由你决定";
+        public const string EmptyPreviewBody = "添加图片地址后下载，文件会保存到本地文件夹。";
         public const string EmptyPreviewTitle = "还没有下载过壁纸";
         public const string ErrorDestNotWritable = "保存目录不可写，请更换目录。";
         public const string ErrorDownloadFailed = "下载失败";
@@ -38,18 +41,26 @@ namespace WallpaperTool
         // 占位符: reason
         public const string ErrorOpenLogFailed = "无法打开日志文件：{0}";
         public const string ErrorRetryHint = "可更换地址或稍后重试。";
+        // 占位符: reason
+        public const string ErrorSaveFailed = "保存图片失败：{0}";
         public const string ErrorTimeout = "连接超时，请稍后重试。";
         public const string ErrorUnknown = "发生未知错误，请查看日志。";
         public const string ErrorUrlEmpty = "请输入图片地址。";
         public const string ErrorUrlInvalid = "请输入以 http:// 或 https:// 开头的地址。";
         public const string FieldAutoUpdate = "登录时自动更新";
         public const string FieldDestDir = "保存到";
+        public const string FieldKeepHistory = "保留历史壁纸";
         public const string FieldLastAutoUpdate = "上次自动更新";
         public const string FieldLogFile = "日志文件";
+        public const string FieldSetWallpaper = "下载后自动设为壁纸";
         public const string FieldUrl = "图片地址";
         public const string HintDesktopSpace = "macOS 的桌面壁纸按空间生效，切换桌面空间可能仍显示旧图。";
+        public const string HintKeepHistoryOff = "每次下载覆盖保存目录里的同名文件。";
+        public const string HintKeepHistoryOn = "每次下载另存为新文件，旧壁纸不会被覆盖。";
         public const string HintLaunchAgentApproval = "首次开启时，系统可能要求你在“系统设置 → 通用 → 登录项”中允许后台项目。";
         public const string HintLogCollapsed = "查看运行日志";
+        public const string HintSetWallpaperOff = "关闭时只保存文件，不会改动你的桌面。";
+        public const string HintSetWallpaperOn = "下载完成后会替换你的桌面壁纸。";
         public const string LogAppStarted = "应用启动";
         public const string LogAutoUpdateDisabled = "已关闭登录时自动更新";
         public const string LogAutoUpdateEnabled = "已开启登录时自动更新";
@@ -67,6 +78,8 @@ namespace WallpaperTool
         public const string LogInvalidImage = "下载内容不是有效图片";
         // 占位符: url
         public const string LogInvalidUrl = "下载地址无效：{0}";
+        public const string LogKeepHistoryOff = "已关闭「保留历史壁纸」";
+        public const string LogKeepHistoryOn = "已开启「保留历史壁纸」";
         // 占位符: reason
         public const string LogLaunchAgentFailed = "更新登录项失败：{0}";
         // 占位符: path
@@ -81,6 +94,9 @@ namespace WallpaperTool
         // 占位符: reason
         public const string LogWallpaperFailed = "设置桌面壁纸失败：{0}";
         public const string LogWallpaperSet = "已设置桌面壁纸";
+        public const string LogWallpaperSettingOff = "已关闭「下载后自动设为壁纸」";
+        public const string LogWallpaperSettingOn = "已开启「下载后自动设为壁纸」";
+        public const string LogWallpaperSkipped = "已跳过设置桌面壁纸（开关关闭）";
         // 占位符: width, height
         public const string MetaDimensions = "{0} × {1}";
         // 占位符: size
@@ -92,6 +108,8 @@ namespace WallpaperTool
         public const string SectionAutoUpdate = "自动更新";
         public const string SectionPreview = "预览";
         public const string SectionSource = "下载源";
+        // 占位符: name
+        public const string StatusAppliedFromPreview = "已将 {0} 设为桌面壁纸";
         public const string StatusCancelled = "已取消下载";
         // 占位符: percent
         public const string StatusDownloading = "正在下载 {0}%";
@@ -100,7 +118,14 @@ namespace WallpaperTool
         public const string StatusLastAutoFail = "上次自动更新失败 · 查看日志";
         public const string StatusNeverUpdated = "尚未更新";
         public const string StatusReady = "就绪";
-        public const string StatusSuccess = "已下载并设为桌面壁纸";
+        // 占位符: name
+        public const string StatusSavedNewAndSet = "已另存为 {0} 并设为桌面壁纸";
+        // 占位符: name
+        public const string StatusSavedNewOnly = "已另存为 {0}（未改动桌面壁纸）";
+        // 占位符: name
+        public const string StatusSavedOverwriteAndSet = "已覆盖 {0} 并设为桌面壁纸";
+        // 占位符: name
+        public const string StatusSavedOverwriteOnly = "已覆盖 {0}（未改动桌面壁纸）";
         // 占位符: time
         public const string StatusUpdatedAt = "已更新 · {0}";
         public const string TimeNever = "从未";

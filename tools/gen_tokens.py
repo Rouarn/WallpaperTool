@@ -24,8 +24,8 @@ TOKENS_PATH = ROOT / "design" / "tokens.json"
 COPY_PATH = ROOT / "design" / "copy.zh-CN.json"
 
 GENERATED = {
-    "cs_theme": ROOT / "src" / "Theme.Generated.cs",
-    "cs_strings": ROOT / "src" / "Strings.Generated.cs",
+    "cs_theme": ROOT / "windows" / "src" / "Theme.Generated.cs",
+    "cs_strings": ROOT / "windows" / "src" / "Strings.Generated.cs",
     "swift_theme": ROOT / "macos" / "Sources" / "WallpaperTool" / "Generated" / "Theme.swift",
     "swift_strings": ROOT / "macos" / "Sources" / "WallpaperTool" / "Generated" / "Strings.swift",
 }
@@ -286,10 +286,11 @@ def build_cs_theme(data):
     lines.append("")
     lines.append("        public static class Motion")
     lines.append("        {")
-    for key in ("fast", "normal"):
-        if key in motion:
-            lines.append("            public const double %s = %sd;" % (
-                key.capitalize(), num(dim_value(motion[key]["$value"]))))
+    for key, value in motion.items():
+        if key == "standardEasing" or value.get("$type") != "duration":
+            continue
+        lines.append("            public const double %s = %sd;" % (
+            key.capitalize(), num(dim_value(value["$value"]))))
     easing = motion.get("standardEasing", {}).get("$value")
     if easing:
         values = ", ".join("%sd" % num(v) for v in easing)
@@ -408,10 +409,11 @@ def build_swift_theme(data):
     # Motion
     motion = data.tokens.get("motion", {})
     lines.append("    enum Motion {")
-    for key in ("fast", "normal"):
-        if key in motion:
-            lines.append("        static let %s: Double = %s" % (
-                key, num(dim_value(motion[key]["$value"]) / 1000.0)))
+    for key, value in motion.items():
+        if key == "standardEasing" or value.get("$type") != "duration":
+            continue
+        lines.append("        static let %s: Double = %s" % (
+            key, num(dim_value(value["$value"]) / 1000.0)))
     easing = motion.get("standardEasing", {}).get("$value")
     if easing:
         lines.append("        static let standardEasing: [Double] = [%s]" % ", ".join(num(v) for v in easing))
@@ -559,7 +561,7 @@ def validate_source_references(copy):
     known = {pascal(key.split(".")) for key in copy}
     known |= {camel(key.split(".")) for key in copy}
 
-    search_roots = [ROOT / "src", ROOT / "macos" / "Sources"]
+    search_roots = [ROOT / "windows" / "src", ROOT / "macos" / "Sources"]
     for root in search_roots:
         if not root.exists():
             continue

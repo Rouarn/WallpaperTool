@@ -6,32 +6,34 @@ namespace WallpaperTool
     {
         public static class Palette
         {
-            public const uint BgCanvasLight = 0xFFF3F3F3;
-            public const uint BgCanvasDark = 0xFF1F1F1F;
-            public const uint BgSurfaceLight = 0xFFFFFFFF;
-            public const uint BgSurfaceDark = 0xFF2B2B2B;
-            public const uint BgSurfaceSubtleLight = 0xFFFAFAFA;
-            public const uint BgSurfaceSubtleDark = 0xFF323232;
-            public const uint StrokeDefaultLight = 0x0F000000;
-            public const uint StrokeDefaultDark = 0x17FFFFFF;
-            public const uint StrokeStrongLight = 0x29000000;
-            public const uint StrokeStrongDark = 0x38FFFFFF;
-            public const uint TextPrimaryLight = 0xFF1B1B1B;
-            public const uint TextPrimaryDark = 0xFFFFFFFF;
-            public const uint TextSecondaryLight = 0xFF5C5C5C;
-            public const uint TextSecondaryDark = 0xFFC8C8C8;
-            public const uint TextTertiaryLight = 0xFF6E6E6E;
-            public const uint TextTertiaryDark = 0xFF9A9A9A;
-            public const uint AccentDefaultLight = 0xFF0F6CBD;
-            public const uint AccentDefaultDark = 0xFF60CDFF;
-            public const uint AccentOnAccentLight = 0xFFFFFFFF;
-            public const uint AccentOnAccentDark = 0xFF101010;
-            public const uint AccentSubtleLight = 0x1A0F6CBD;
-            public const uint AccentSubtleDark = 0x2460CDFF;
-            public const uint AccentHoverLight = 0xFF0C5A9E;
-            public const uint AccentHoverDark = 0xFF7BD7FF;
-            public const uint AccentPressedLight = 0xFF0A4C86;
-            public const uint AccentPressedDark = 0xFF9EE2FF;
+            public const uint BgCanvasLight = 0xFFF3F1EC;
+            public const uint BgCanvasDark = 0xFF171512;
+            public const uint BgSurfaceLight = 0xFFFAF9F5;
+            public const uint BgSurfaceDark = 0xFF211E19;
+            public const uint BgSurfaceSubtleLight = 0xFFEAE7E0;
+            public const uint BgSurfaceSubtleDark = 0xFF2A2620;
+            public const uint StrokeDefaultLight = 0x1A171512;
+            public const uint StrokeDefaultDark = 0x1FFAF9F5;
+            public const uint StrokeStrongLight = 0x38171512;
+            public const uint StrokeStrongDark = 0x42FAF9F5;
+            public const uint TextPrimaryLight = 0xFF171512;
+            public const uint TextPrimaryDark = 0xFFFAF9F5;
+            public const uint TextSecondaryLight = 0xFF5E5A52;
+            public const uint TextSecondaryDark = 0xFFC9C3B7;
+            public const uint TextTertiaryLight = 0xFF6E6A60;
+            public const uint TextTertiaryDark = 0xFF9A9488;
+            public const uint AccentDefaultLight = 0xFF46A6C6;
+            public const uint AccentDefaultDark = 0xFF5FBEDC;
+            public const uint AccentOnAccentLight = 0xFF171512;
+            public const uint AccentOnAccentDark = 0xFF171512;
+            public const uint AccentTextLight = 0xFF247089;
+            public const uint AccentTextDark = 0xFF8FD3E6;
+            public const uint AccentSubtleLight = 0x2446A6C6;
+            public const uint AccentSubtleDark = 0x2E5FBEDC;
+            public const uint AccentHoverLight = 0xFF3E97B4;
+            public const uint AccentHoverDark = 0xFF7ACCE6;
+            public const uint AccentPressedLight = 0xFF357F98;
+            public const uint AccentPressedDark = 0xFF95D8EC;
             public const uint StatusSuccessLight = 0xFF0F7B0F;
             public const uint StatusSuccessDark = 0xFF6CCB5F;
             public const uint StatusSuccessSubtleLight = 0x1A0F7B0F;
@@ -121,6 +123,7 @@ namespace WallpaperTool
         {
             public const double Fast = 150d;
             public const double Normal = 200d;
+            public const double Spin = 2400d;
             public static readonly double[] StandardEasing = new double[] { 0.2d, 0d, 0d, 1d };
         }
     }

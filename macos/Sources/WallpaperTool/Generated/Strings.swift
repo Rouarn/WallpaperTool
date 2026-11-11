@@ -16,13 +16,16 @@ enum Strings {
     static let actionOpenFolder = "打开文件夹"
     static let actionOpenLog = "查看日志"
     static let actionOpenLogFile = "打开日志文件"
-    static let actionReapply = "重新应用"
+    static let actionOpenLoginItems = "打开登录项设置"
+    static let actionOpenMainWindow = "打开主窗口"
+    static let actionQuit = "退出"
+    static let actionReapply = "设为桌面壁纸"
     static let actionResetUrl = "恢复默认"
     static let actionRetry = "重试"
     static let actionTestNow = "立即测试"
     static let appName = "壁纸工具"
-    static let appTagline = "登录时自动更新桌面壁纸"
-    static let emptyPreviewBody = "添加图片地址后下载，完成后会自动设为桌面壁纸。"
+    static let appTagline = "按需下载壁纸，是否设为桌面由你决定"
+    static let emptyPreviewBody = "添加图片地址后下载，文件会保存到本地文件夹。"
     static let emptyPreviewTitle = "还没有下载过壁纸"
     static let errorDestNotWritable = "保存目录不可写，请更换目录。"
     static let errorDownloadFailed = "下载失败"
@@ -41,18 +44,27 @@ enum Strings {
         return "无法打开日志文件：\(reason)"
     }
     static let errorRetryHint = "可更换地址或稍后重试。"
+    static func errorSaveFailed(_ reason: String) -> String {
+        return "保存图片失败：\(reason)"
+    }
     static let errorTimeout = "连接超时，请稍后重试。"
     static let errorUnknown = "发生未知错误，请查看日志。"
     static let errorUrlEmpty = "请输入图片地址。"
     static let errorUrlInvalid = "请输入以 http:// 或 https:// 开头的地址。"
     static let fieldAutoUpdate = "登录时自动更新"
     static let fieldDestDir = "保存到"
+    static let fieldKeepHistory = "保留历史壁纸"
     static let fieldLastAutoUpdate = "上次自动更新"
     static let fieldLogFile = "日志文件"
+    static let fieldSetWallpaper = "下载后自动设为壁纸"
     static let fieldUrl = "图片地址"
     static let hintDesktopSpace = "macOS 的桌面壁纸按空间生效，切换桌面空间可能仍显示旧图。"
+    static let hintKeepHistoryOff = "每次下载覆盖保存目录里的同名文件。"
+    static let hintKeepHistoryOn = "每次下载另存为新文件，旧壁纸不会被覆盖。"
     static let hintLaunchAgentApproval = "首次开启时，系统可能要求你在“系统设置 → 通用 → 登录项”中允许后台项目。"
     static let hintLogCollapsed = "查看运行日志"
+    static let hintSetWallpaperOff = "关闭时只保存文件，不会改动你的桌面。"
+    static let hintSetWallpaperOn = "下载完成后会替换你的桌面壁纸。"
     static let logAppStarted = "应用启动"
     static let logAutoUpdateDisabled = "已关闭登录时自动更新"
     static let logAutoUpdateEnabled = "已开启登录时自动更新"
@@ -75,6 +87,8 @@ enum Strings {
     static func logInvalidUrl(_ url: String) -> String {
         return "下载地址无效：\(url)"
     }
+    static let logKeepHistoryOff = "已关闭「保留历史壁纸」"
+    static let logKeepHistoryOn = "已开启「保留历史壁纸」"
     static func logLaunchAgentFailed(_ reason: String) -> String {
         return "更新登录项失败：\(reason)"
     }
@@ -93,6 +107,9 @@ enum Strings {
         return "设置桌面壁纸失败：\(reason)"
     }
     static let logWallpaperSet = "已设置桌面壁纸"
+    static let logWallpaperSettingOff = "已关闭「下载后自动设为壁纸」"
+    static let logWallpaperSettingOn = "已开启「下载后自动设为壁纸」"
+    static let logWallpaperSkipped = "已跳过设置桌面壁纸（开关关闭）"
     static func metaDimensions(_ width: String, _ height: String) -> String {
         return "\(width) × \(height)"
     }
@@ -107,6 +124,9 @@ enum Strings {
     static let sectionAutoUpdate = "自动更新"
     static let sectionPreview = "预览"
     static let sectionSource = "下载源"
+    static func statusAppliedFromPreview(_ name: String) -> String {
+        return "已将 \(name) 设为桌面壁纸"
+    }
     static let statusCancelled = "已取消下载"
     static func statusDownloading(_ percent: String) -> String {
         return "正在下载 \(percent)%"
@@ -116,7 +136,18 @@ enum Strings {
     static let statusLastAutoFail = "上次自动更新失败 · 查看日志"
     static let statusNeverUpdated = "尚未更新"
     static let statusReady = "就绪"
-    static let statusSuccess = "已下载并设为桌面壁纸"
+    static func statusSavedNewAndSet(_ name: String) -> String {
+        return "已另存为 \(name) 并设为桌面壁纸"
+    }
+    static func statusSavedNewOnly(_ name: String) -> String {
+        return "已另存为 \(name)（未改动桌面壁纸）"
+    }
+    static func statusSavedOverwriteAndSet(_ name: String) -> String {
+        return "已覆盖 \(name) 并设为桌面壁纸"
+    }
+    static func statusSavedOverwriteOnly(_ name: String) -> String {
+        return "已覆盖 \(name)（未改动桌面壁纸）"
+    }
     static func statusUpdatedAt(_ time: String) -> String {
         return "已更新 · \(time)"
     }

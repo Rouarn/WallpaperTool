@@ -1,6 +1,14 @@
+# 构建与运行产物（bin/ 同时覆盖根目录与 windows/bin/）
 bin/
 dist/
 .build/
+.swiftpm/
+obj/
+DerivedData/
 *.log
+*.tmp
+*.exe
+*.pdb
+*.user
 .DS_Store
 .screenshots/

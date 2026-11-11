@@ -6,8 +6,8 @@
 
 | 来源 | 生成物 | 消费方 |
 |---|---|---|
-| `design/tokens.json` | `src/Theme.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Theme.swift` | 两端主题层 |
-| `design/copy.zh-CN.json` | `src/Strings.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Strings.swift` | 两端界面与服务层 |
+| `design/tokens.json` | `windows/src/Theme.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Theme.swift` | 两端主题层 |
+| `design/copy.zh-CN.json` | `windows/src/Strings.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Strings.swift` | 两端界面与服务层 |
 
 规则：
 
@@ -33,7 +33,7 @@
 | 弱表面 | `color.bg.surfaceSubtle` | 日志、只读区 |
 | 描边 | `color.stroke.default` / `stroke.strong` | 卡片描边 / 输入框描边 |
 | 文字 | `color.text.primary` / `secondary` / `tertiary` | 标题与值 / 标签与说明 / 时间戳 |
-| 强调 | `color.accent.default` / `onAccent` / `subtle` / `hover` / `pressed` | 主按钮、选中态、进度 |
+| 强调 | `color.accent.default` / `onAccent` / `text` / `subtle` / `hover` / `pressed` | 主按钮、选中态、进度 / 浅底上的文字链与焦点描边 |
 | 状态 | `color.status.*` / `.*Subtle` | 仅表达成功/警告/失败 |
 
 硬性要求：

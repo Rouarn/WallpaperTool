@@ -15,8 +15,8 @@
 
 | 文件 | 平台 |
 |---|---|
-| `src/Theme.Generated.cs` | Windows（WPF） |
-| `src/Strings.Generated.cs` | Windows（WPF） |
+| `windows/src/Theme.Generated.cs` | Windows（WPF） |
+| `windows/src/Strings.Generated.cs` | Windows（WPF） |
 | `macos/Sources/WallpaperTool/Generated/Theme.swift` | macOS（SwiftUI） |
 | `macos/Sources/WallpaperTool/Generated/Strings.swift` | macOS（SwiftUI） |
 
@@ -31,7 +31,7 @@ python3 tools/gen_tokens.py --check
 # 4. 提交：2 个源文件 + 4 个生成文件
 ```
 
-`--check` 失败时不会写文件；修复后重新生成。构建脚本（`build_app.ps1` / `scripts/build_macos.sh`）会在生成文件缺失时直接报错。
+`--check` 失败时不会写文件；修复后重新生成。构建脚本（`windows/build_app.ps1` / `macos/scripts/build_macos.sh`）会在生成文件缺失时直接报错。
 
 ## 新增一个 token
 
@@ -50,6 +50,19 @@ python3 tools/gen_tokens.py --check
 - 尺寸/字号按平台取值（Windows 与 macOS 各一套 ramp），语义角色共用。
 - macOS 的 `bg` / `stroke` / `text` 映射到系统语义色（见 `tokens.json` 的 `macos.semantic`），自动适配浅色/深色/提高对比度。
 - 品牌色与状态色两端使用同一组十六进制值，保证识别一致。
+
+## 品牌资源
+
+色值与图标来自 VaKao 品牌视觉资源包（`/Users/woyuxiaji/Pictures/VaKao-品牌视觉资源`），不在代码里另存一份：
+
+| 资源 | 落位 | 用法 |
+|---|---|---|
+| `tokens.json` 的 paper/raised/ink/accent | 本目录 `tokens.json` 的 `color.bg.*`、`color.text.*`、`color.accent.*` | 品牌纸面/墨色/强调蓝 |
+| `icons/windows/app.ico` | `windows/src/app.ico` | `build_app.ps1` 的 `/win32icon` |
+| `icons/macos/app.icns` | `macos/Resources/AppIcon.icns` | 组装 `.app` 的 `CFBundleIconFile` |
+| `logo/star-mono-ink.png`、`star-mono-white.png` | `macos/Resources/BrandStarInk.png`、`BrandStarWhite.png` | 界面四芒星标记（浅色/深色各一） |
+
+状态色（成功/警告/失败）品牌包未提供对应语义，沿用按 WCAG AA 调整过的取值，不擅自改品牌四色星颜色。
 
 ## 依赖
 

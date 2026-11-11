@@ -13,11 +13,12 @@ enum Theme {
         static let textPrimary = ThemeColor.semantic(.labelColor)
         static let textSecondary = ThemeColor.semantic(.secondaryLabelColor)
         static let textTertiary = ThemeColor.semantic(.tertiaryLabelColor)
-        static let accentDefault = ThemeColor.adaptive(light: 0xFF0F6CBD, dark: 0xFF60CDFF)
-        static let accentOnAccent = ThemeColor.adaptive(light: 0xFFFFFFFF, dark: 0xFF101010)
-        static let accentSubtle = ThemeColor.adaptive(light: 0x1A0F6CBD, dark: 0x2460CDFF)
-        static let accentHover = ThemeColor.adaptive(light: 0xFF0C5A9E, dark: 0xFF7BD7FF)
-        static let accentPressed = ThemeColor.adaptive(light: 0xFF0A4C86, dark: 0xFF9EE2FF)
+        static let accentDefault = ThemeColor.adaptive(light: 0xFF46A6C6, dark: 0xFF5FBEDC)
+        static let accentOnAccent = ThemeColor.adaptive(light: 0xFF171512, dark: 0xFF171512)
+        static let accentText = ThemeColor.adaptive(light: 0xFF247089, dark: 0xFF8FD3E6)
+        static let accentSubtle = ThemeColor.adaptive(light: 0x2446A6C6, dark: 0x2E5FBEDC)
+        static let accentHover = ThemeColor.adaptive(light: 0xFF3E97B4, dark: 0xFF7ACCE6)
+        static let accentPressed = ThemeColor.adaptive(light: 0xFF357F98, dark: 0xFF95D8EC)
         static let statusSuccess = ThemeColor.adaptive(light: 0xFF0F7B0F, dark: 0xFF6CCB5F)
         static let statusSuccessSubtle = ThemeColor.adaptive(light: 0x1A0F7B0F, dark: 0x246CCB5F)
         static let statusWarning = ThemeColor.adaptive(light: 0xFF9D5D00, dark: 0xFFFCE100)
@@ -101,6 +102,7 @@ enum Theme {
     enum Motion {
         static let fast: Double = 0.15
         static let normal: Double = 0.2
+        static let spin: Double = 2.4
         static let standardEasing: [Double] = [0.2, 0, 0, 1]
     }
 }
