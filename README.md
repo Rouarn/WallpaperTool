@@ -6,10 +6,12 @@
 
 - **原生双端应用**：Windows 端为 .NET Framework（C# WinForms，Windows 自带运行时）；macOS 端为 SwiftUI + AppKit（SwiftPM）。
 - **图形化配置界面**：设置保存目录、下载 URL 和日志文件名。
+- **界面与 macOS 版同源**：卡片式布局、自绘按钮/开关/输入框、预览缩略图、进度条、错误横幅，浅色/深色随系统切换。
+- **可取消的下载**：顶部进度条实时显示百分比，取消后状态条给出结果。
 - **开机静默更新**：
   - Windows 端作为启动项运行时在后台静默下载并退出，支持 `-silent` 参数手动触发。
   - macOS 端通过 LaunchAgent（`~/Library/LaunchAgents/com.local.wallpapertool.plist`）登录后静默运行。
-- **高 DPI 适配**：Windows 端随屏幕分辨率调整布局；macOS 端使用原生自适应布局。
+- **高 DPI 适配**：Windows 端按屏幕 DPI 缩放全部尺寸与字号；macOS 端使用原生自适应布局。
 - **中文支持**：全中文界面与日志，文案集中在 `design/copy.zh-CN.json`。
 - **日志记录**：详细记录每次运行的时间和结果，方便排查问题。
 
@@ -30,23 +32,32 @@ wallpaper-tool/
 │   │   ├── Views/      # 界面
 │   │   └── Generated/  # Theme.swift / Strings.swift（生成物，禁止手改）
 │   ├── Resources/      # AppIcon.icns 与品牌星芒图（来自品牌资源包）
+│   ├── dist/           # 构建产物 WallpaperTool.app（不提交）
 │   └── scripts/
 │       └── build_macos.sh
 └── windows/            # Windows 端（C# WinForms）
     ├── build_app.bat   # 编译入口（双击运行）
-    ├── build_app.ps1   # 调用 csc.exe 编译
+    ├── build_app.ps1   # 调用 csc.exe 编译 src 下全部 .cs
     ├── bin/            # 编译产物 WallpaperTool.exe 与日志（不提交）
     ├── src/
-    │   ├── WallpaperApp.cs
-    │   ├── app.ico
-    │   ├── app.manifest
-    │   ├── Theme.Generated.cs    # 生成物，禁止手改
-    │   └── Strings.Generated.cs  # 生成物，禁止手改
+    │   ├── App/        # 入口与主窗口（Program / MainForm）
+    │   ├── Core/       # 配置、日志、下载、壁纸、预览、错误映射
+    │   ├── Views/      # 卡片与窗口部件；Design/ 为设计适配层与自绘控件
+    │   ├── Generated/  # Theme.Generated.cs / Strings.Generated.cs（禁止手改）
+    │   └── Assets/     # app.ico / app.manifest
     └── scripts/
         ├── download_wallpaper.ps1 # PowerShell 下载逻辑（旧版核心）
         ├── install_startup.ps1    # 安装开机启动项
         └── run_now.bat            # 快速运行脚本
 ```
+
+## 🖼️ 界面预览（Windows）
+
+| 浅色 | 深色 |
+|---|---|
+| ![Windows 浅色](docs/screenshots/windows-light.png) | ![Windows 深色](docs/screenshots/windows-dark.png) |
+
+界面按 `design/tokens.json` 渲染：卡片式分组、自绘按钮/开关/输入框、4px 进度条、状态圆点与错误横幅；浅色/深色随系统主题切换，深色下标题栏一并变暗。
 
 ## 🎨 设计源与生成物
 
@@ -54,8 +65,8 @@ wallpaper-tool/
 
 | 来源 | 生成物 |
 |---|---|
-| `design/tokens.json` | `windows/src/Theme.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Theme.swift` |
-| `design/copy.zh-CN.json` | `windows/src/Strings.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Strings.swift` |
+| `design/tokens.json` | `windows/src/Generated/Theme.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Theme.swift` |
+| `design/copy.zh-CN.json` | `windows/src/Generated/Strings.Generated.cs`、`macos/Sources/WallpaperTool/Generated/Strings.swift` |
 
 ```bash
 python3 tools/gen_tokens.py          # 重新生成
@@ -98,7 +109,7 @@ python3 tools/gen_tokens.py --check     # 确认生成物一致
 macos/scripts/build_macos.sh            # swift build + 组装 .app + ad-hoc 签名
 ```
 
-产物位于 `dist/WallpaperTool.app`。静默运行：`dist/WallpaperTool.app/Contents/MacOS/WallpaperTool --silent`。
+产物位于 `macos/dist/WallpaperTool.app`（与 Windows 端的 `windows/bin/` 对称）。静默运行：`macos/dist/WallpaperTool.app/Contents/MacOS/WallpaperTool --silent`。
 
 ## 🛠️ 技术细节
 
@@ -112,7 +123,7 @@ macos/scripts/build_macos.sh            # swift build + 组装 .app + ad-hoc 签
 A: Windows 端已在代码中强制使用 UTF-8，并配置控制台输出编码，确保中文环境正常显示。
 
 **Q: 如何修改默认下载源？**
-A: 在图形界面中修改 URL 即可。Windows 端的硬编码默认值在 `windows/src/WallpaperApp.cs` 的 `defaultUrl` 变量中。
+A: 在图形界面中修改 URL 即可。Windows 端的硬编码默认值在 `windows/src/Core/AppConfig.cs` 的 `DefaultUrl` 常量中。
 
 **Q: 开机启动没有反应？**
 A: 开机启动模式为**静默运行**，不显示窗口。Windows 端查看 `windows/bin/wallpaper_log.txt`，macOS 端查看 `~/Library/Logs/WallpaperTool/`。
