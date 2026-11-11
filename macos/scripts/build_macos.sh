@@ -4,7 +4,8 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 APP_NAME="WallpaperTool"
-BUILD_DIR="${ROOT}/dist"
+# 产物放在 macos/ 自己目录下，与 Windows 端的 windows/bin/ 对称
+BUILD_DIR="${ROOT}/macos/dist"
 APP="${BUILD_DIR}/${APP_NAME}.app"
 SOURCE_FILE="${ROOT}/macos/Sources/WallpaperTool/App/WallpaperToolApp.swift"
 
